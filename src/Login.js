@@ -26,7 +26,7 @@ const Login =(props) =>{
                 <div className="btnContainer">
                     {hasAccount ? (
                         <>
-                        <button onClick={handleLogin}>Sign In</button>
+                        <button type="submit" onClick={handleLogin}>Sign In</button>
                         <p>Don't Have an Account ? <span onClick={ () => setHasAccount(!hasAccount)}>Sign Up</span></p>
                         </>
                     ):(

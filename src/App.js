@@ -24,23 +24,25 @@ const App = () => {
     setPasswordError('');
   }
   const handleLogin =() =>{
-      clearErrors();
-      fire
-      .auth()
-      .signInWithEmailAndPassword(email,password)
-      .catch(err => {
-        switch(err.code){
-          case "auth/invalid-email":
-          case "auth/user-disabled":
-          case "auth/user-not-found":
-            setEmailError(err.message);
-            break;
-          case "auth/wrong-password":
-            setPasswordError(err.message);
-            break;
-          default:
-        }
-      });
+    localStorage.setItem("User_Exist",true)
+    setUserExist(localStorage.getItem("User_Exist"))
+      // clearErrors();
+      // fire
+      // .auth()
+      // .signInWithEmailAndPassword(email,password)
+      // .catch(err => {
+      //   switch(err.code){
+      //     case "auth/invalid-email":
+      //     case "auth/user-disabled":
+      //     case "auth/user-not-found":
+      //       setEmailError(err.message);
+      //       break;
+      //     case "auth/wrong-password":
+      //       setPasswordError(err.message);
+      //       break;
+      //     default:
+      //   }
+      // });
   };
 
   const handleSignup =() =>{
@@ -67,22 +69,22 @@ const App = () => {
   };
 
   const authListener =()=>{
-    
-    fire.auth().onAuthStateChanged((user) =>{
-      if(user){
-        clearInputs();
-        // setUser(user);
-        localStorage.setItem("User_Exist",true)
-        setUserExist(localStorage.getItem("User_Exist"))
-      }
-      else{
-        // setUser("");
-        localStorage.removeItem("User_Exist")
-        setUserExist("")
+    setUserExist(localStorage.getItem("User_Exist"))
+    // fire.auth().onAuthStateChanged((user) =>{
+    //   if(user){
+    //     clearInputs();
+    //     // setUser(user);
+    //     localStorage.setItem("User_Exist",true)
+    //     setUserExist(localStorage.getItem("User_Exist"))
+    //   }
+    //   else{
+    //     // setUser("");
+    //     localStorage.removeItem("User_Exist")
+    //     setUserExist("")
 
-      }
+    //   }
      
-    });
+    // });
   };
   useEffect(()=>{
       authListener();
